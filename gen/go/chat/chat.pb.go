@@ -24,8 +24,9 @@ const (
 type Chat struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ChatId        int64                  `protobuf:"varint,1,opt,name=chat_id,json=chatId,proto3" json:"chat_id,omitempty"`
-	MemberId      []int64                `protobuf:"varint,2,rep,packed,name=member_id,json=memberId,proto3" json:"member_id,omitempty"`
-	Msg           []*Msg                 `protobuf:"bytes,3,rep,name=msg,proto3" json:"msg,omitempty"`
+	Msg           []*Msg                 `protobuf:"bytes,2,rep,name=msg,proto3" json:"msg,omitempty"`
+	MemberId      []int64                `protobuf:"varint,3,rep,packed,name=member_id,json=memberId,proto3" json:"member_id,omitempty"`
+	AdminId       []int64                `protobuf:"varint,4,rep,packed,name=admin_id,json=adminId,proto3" json:"admin_id,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -67,6 +68,13 @@ func (x *Chat) GetChatId() int64 {
 	return 0
 }
 
+func (x *Chat) GetMsg() []*Msg {
+	if x != nil {
+		return x.Msg
+	}
+	return nil
+}
+
 func (x *Chat) GetMemberId() []int64 {
 	if x != nil {
 		return x.MemberId
@@ -74,9 +82,9 @@ func (x *Chat) GetMemberId() []int64 {
 	return nil
 }
 
-func (x *Chat) GetMsg() []*Msg {
+func (x *Chat) GetAdminId() []int64 {
 	if x != nil {
-		return x.Msg
+		return x.AdminId
 	}
 	return nil
 }
@@ -417,11 +425,12 @@ var File_chat_chat_proto protoreflect.FileDescriptor
 
 const file_chat_chat_proto_rawDesc = "" +
 	"\n" +
-	"\x0fchat/chat.proto\x12\x04chat\"Y\n" +
+	"\x0fchat/chat.proto\x12\x04chat\"t\n" +
 	"\x04Chat\x12\x17\n" +
 	"\achat_id\x18\x01 \x01(\x03R\x06chatId\x12\x1b\n" +
-	"\tmember_id\x18\x02 \x03(\x03R\bmemberId\x12\x1b\n" +
-	"\x03msg\x18\x03 \x03(\v2\t.chat.MsgR\x03msg\"G\n" +
+	"\x03msg\x18\x02 \x03(\v2\t.chat.MsgR\x03msg\x12\x1b\n" +
+	"\tmember_id\x18\x03 \x03(\x03R\bmemberId\x12\x19\n" +
+	"\badmin_id\x18\x04 \x03(\x03R\aadminId\"G\n" +
 	"\x03Msg\x12\x17\n" +
 	"\afrom_id\x18\x01 \x01(\x03R\x06fromId\x12\x12\n" +
 	"\x04text\x18\x02 \x01(\tR\x04text\x12\x13\n" +
